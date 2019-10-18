@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+void quicksort(int n[],int f,int l)
+{
+    int temp,i,j,p;
+    if(f<l)
+    {
+        i=f;
+        j=l;
+        p=f;
+        while(i<j)
+        {
+            while(n[i]<=n[p] && i<l)
+               i++;
+            while(n[j]>n[p])
+               j--;
+               if(i<j)
+               {
+                   temp = n[i];
+                   n[i]=n[j];
+                   n[j]=temp;
+               }
+            
+        }
+        temp=n[p];
+        n[p]=n[j];
+        n[j]=temp;
+        quicksort(n,f,j-1);
+        quicksort(n,j+1,l);
+    }
+}
+int main()
+{
+   int n,s,e,k=0,p;
+   cout<<"enter the n";
+   cin>>n;
+   int a[n];
+   cout<<"\n"<<"enter"<<"\n";
+   for(int i=0;i<n;i++)
+   {
+       cin>>a[i];
+   }
+   quicksort(a,0,n-1);
+   cout<<"sorted";
+   for(int j=0;j<n;j++)
+   {
+       cout<<a[j]<<" ";
+   }
+   cout<<"\n"<<"enter the starting";
+   cin>>s;
+   cout<<"\n"<<"enter end";
+   cin>>e;
+   int b[e-s+1];
+   for(int i=(s-1);i<e;i++)
+   {
+       b[k]=a[i];
+       k++;
+   }
+   for(int l=0;l<(e-s+1);l++)
+   {
+       cout<<b[l]<<" ";
+   }
+   cout<<"enter the kth po"<<"\n";
+   cin>>p;
+   cout<<"smallest"<<b[p-1];
+    return 0;
+}
